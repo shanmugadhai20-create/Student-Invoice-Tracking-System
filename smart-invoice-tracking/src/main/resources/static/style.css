@@ -1,39 +1,244 @@
-body {
-    font-family: Arial, sans-serif;
-    background: #f4f6f8;
-    margin: 0;
-    padding: 30px;
-}
 
-h1 {
-    text-align: center;
-}
-
-.container {
-    background: white;
-    max-width: 700px;
-    margin: 20px auto;
-    padding: 25px;
-    border-radius: 10px;
-}
-
-input,
-select {
-    width: 100%;
-    padding: 12px;
-    margin: 8px 0;
+/* ===== GLOBAL STYLES ===== */
+* {
     box-sizing: border-box;
 }
 
-button {
-    padding: 12px 20px;
-    margin-top: 10px;
-    cursor: pointer;
+:root {
+    --primary: #6254e7;
+    --primary-dark: #4938ca;
+    --secondary: #00b8d9;
+    --success: #16a878;
+    --danger: #ef476f;
+    --warning: #ffb703;
+    --text: #25304a;
+    --muted: #737d96;
+    --surface: #ffffff;
+    --background: #f3f5ff;
+    --border: #e6e9f5;
 }
 
-.invoice {
-    border: 1px solid #ddd;
-    padding: 15px;
-    margin-top: 15px;
-    border-radius: 8px;
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background:
+            radial-gradient(circle at top left, #e1e7ff 0, transparent 35%),
+            linear-gradient(135deg, #f5f3ff, #edf8ff);
+    color: var(--text);
+    margin: 0;
+    padding: 35px 22px;
+    min-height: 100vh;
+}
+
+/* ===== MAIN HEADING ===== */
+h1 {
+    text-align: center;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin: 10px 0 35px;
+    background: linear-gradient(100deg, #4938ca, #7955e8, #00a9ce);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+h2 {
+    font-size: 23px;
+    color: #4938ca;
+    margin: 0 0 22px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid #efedff;
+}
+
+h3 {
+    color: #5144cc;
+    overflow-wrap: anywhere;
+}
+
+/* ===== FORM AND CONTENT CARDS ===== */
+.container {
+    background: rgba(255, 255, 255, 0.96);
+    max-width: 850px;
+    margin: 24px auto;
+    padding: 30px;
+    border: 1px solid rgba(220, 224, 250, 0.9);
+    border-radius: 20px;
+    box-shadow: 0 12px 35px rgba(69, 65, 150, 0.09);
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.container:hover {
+    box-shadow: 0 16px 42px rgba(69, 65, 150, 0.14);
+}
+
+/* ===== INPUTS ===== */
+input,
+select,
+textarea {
+    display: block;
+    width: 100%;
+    padding: 13px 15px;
+    margin: 10px 0 16px;
+    border: 1.5px solid #dfe3f1;
+    border-radius: 11px;
+    background: #fbfcff;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #98a0b5;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #7967ed;
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(98, 84, 231, 0.12);
+}
+
+label {
+    display: block;
+    margin-top: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #555d78;
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* ===== BUTTONS ===== */
+button {
+    border: none;
+    border-radius: 10px;
+    padding: 12px 20px;
+    margin: 7px 7px 7px 0;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    color: #ffffff;
+    background: linear-gradient(110deg, #6254e7, #8064ed);
+    box-shadow: 0 5px 13px rgba(98, 84, 231, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(98, 84, 231, 0.3);
+    filter: brightness(1.04);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* Different buttons based on their text */
+button[onclick="createInvoice()"],
+button[onclick="saveCustomer()"] {
+    background: linear-gradient(110deg, #0ea878, #16c79a);
+    box-shadow: 0 5px 13px rgba(22, 168, 120, 0.2);
+}
+
+button[onclick="loadInvoices()"] {
+    background: linear-gradient(110deg, #087fbd, #00b8d9);
+    box-shadow: 0 5px 13px rgba(0, 184, 217, 0.2);
+}
+
+button[onclick="resetCustomerForm()"] {
+    background: linear-gradient(110deg, #f59e0b, #f97316);
+}
+
+/* ===== INVOICE AND CUSTOMER CARDS ===== */
+.invoice,
+.customer-card {
+    background: linear-gradient(135deg, #ffffff, #f7f7ff);
+    border: 1px solid #e5e5fb;
+    border-left: 5px solid #7161e8;
+    padding: 20px;
+    margin-top: 17px;
+    border-radius: 14px;
+    box-shadow: 0 5px 16px rgba(60, 60, 120, 0.06);
+    overflow-wrap: anywhere;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.invoice:hover,
+.customer-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 23px rgba(60, 60, 120, 0.12);
+}
+
+.invoice p,
+.customer-card p {
+    line-height: 1.7;
+    color: #59647e;
+    margin: 7px 0;
+}
+
+/* ===== STATUS BADGES (for future use) ===== */
+.status-paid {
+    color: #087f5b;
+    background: #d3f9e8;
+}
+
+.status-pending {
+    color: #946200;
+    background: #fff0bd;
+}
+
+.status-overdue {
+    color: #c92a4b;
+    background: #ffe0e6;
+}
+
+/* ===== CUSTOMER / INVOICE LIST ===== */
+#invoiceList,
+#customerList {
+    margin-top: 18px;
+}
+
+#invoiceList:empty::after,
+#customerList:empty::after {
+    content: "No records to display yet.";
+    display: block;
+    padding: 20px;
+    text-align: center;
+    color: #8a92aa;
+    background: #f8f9ff;
+    border: 1px dashed #d8dcf0;
+    border-radius: 12px;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 600px) {
+    body {
+        padding: 18px 12px;
+    }
+
+    h1 {
+        margin-bottom: 25px;
+    }
+
+    .container {
+        padding: 20px 16px;
+        border-radius: 15px;
+        margin: 16px auto;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    button {
+        max-width: 100%;
+        margin-right: 4px;
+    }
 }

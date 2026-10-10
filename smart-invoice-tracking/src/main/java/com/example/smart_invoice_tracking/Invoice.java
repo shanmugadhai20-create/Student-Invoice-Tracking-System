@@ -19,25 +19,43 @@ public class Invoice {
     private String invoiceNumber;
 
     private String customerName;
-
     private String customerEmail;
+    private String customerPhone;
+    private String customerAddress;
 
+    private String productName;
+    private String productDescription;
+
+    private Integer quantity;
+    private Double unitPrice;
+
+    private Double subtotal;
+    private Double discount;
+    private Double tax;
     private Double amount;
 
     private LocalDate invoiceDate;
-
     private LocalDate dueDate;
+
+    private Double paidAmount;
+    private Double pendingAmount;
+
+    private String paymentMethod;
+    private LocalDate paymentDate;
 
     private String status;
 
-    // Default constructor
+    private String notes;
+
     public Invoice() {
     }
 
-    // Getters and Setters
-
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getInvoiceNumber() {
@@ -64,6 +82,78 @@ public class Invoice {
         this.customerEmail = customerEmail;
     }
 
+    public String getCustomerPhone() {
+        return customerPhone;
+    }
+
+    public void setCustomerPhone(String customerPhone) {
+        this.customerPhone = customerPhone;
+    }
+
+    public String getCustomerAddress() {
+        return customerAddress;
+    }
+
+    public void setCustomerAddress(String customerAddress) {
+        this.customerAddress = customerAddress;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public String getProductDescription() {
+        return productDescription;
+    }
+
+    public void setProductDescription(String productDescription) {
+        this.productDescription = productDescription;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public Double getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(Double unitPrice) {
+        this.unitPrice = unitPrice;
+    }
+
+    public Double getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(Double subtotal) {
+        this.subtotal = subtotal;
+    }
+
+    public Double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Double discount) {
+        this.discount = discount;
+    }
+
+    public Double getTax() {
+        return tax;
+    }
+
+    public void setTax(Double tax) {
+        this.tax = tax;
+    }
+
     public Double getAmount() {
         return amount;
     }
@@ -88,11 +178,51 @@ public class Invoice {
         this.dueDate = dueDate;
     }
 
+    public Double getPaidAmount() {
+        return paidAmount;
+    }
+
+    public void setPaidAmount(Double paidAmount) {
+        this.paidAmount = paidAmount;
+    }
+
+    public Double getPendingAmount() {
+        return pendingAmount;
+    }
+
+    public void setPendingAmount(Double pendingAmount) {
+        this.pendingAmount = pendingAmount;
+    }
+
+    public String getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
+    public LocalDate getPaymentDate() {
+        return paymentDate;
+    }
+
+    public void setPaymentDate(LocalDate paymentDate) {
+        this.paymentDate = paymentDate;
+    }
+
     public String getStatus() {
         return status;
     }
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
     }
 }
